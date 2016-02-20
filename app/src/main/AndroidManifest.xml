@@ -24,6 +24,8 @@
         </activity>
 
         <activity android:name=".view.impl.MovieGalleryActivity" />
+        <activity android:name=".view.impl.MovieDetailsActivity" />
+
     </application>
 
 </manifest>

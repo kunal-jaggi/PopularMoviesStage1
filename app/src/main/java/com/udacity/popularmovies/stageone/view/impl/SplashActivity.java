@@ -48,5 +48,6 @@ public class SplashActivity extends BaseActivity implements ISplashView {
     public void moveToMainView() {
         Intent mainActivity = new Intent(this, MovieGalleryActivity.class);
         startActivity(mainActivity);
+        finish();
     }
 }

@@ -30,11 +30,14 @@ dependencies {
 
     //Butterknife for view injection
     compile 'com.jakewharton:butterknife:7.0.1'
+
     //Picasso for loading and caching images
     compile 'com.squareup.picasso:picasso:2.5.2'
+
     //Retrofit for Networking
-    compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
+    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
     compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
+
     //event injection
     compile 'com.squareup:otto:1.3.8'
 }

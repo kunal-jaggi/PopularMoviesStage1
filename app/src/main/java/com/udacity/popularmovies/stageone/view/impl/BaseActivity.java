@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.udacity.popularmovies.stageone.R;
 
@@ -14,7 +15,7 @@ import com.udacity.popularmovies.stageone.R;
  * Created by kunaljaggi on 2/14/16.
  */
 
-public abstract class BaseActivity extends AppCompatActivity  {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public abstract class BaseActivity extends AppCompatActivity  {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -51,6 +53,7 @@ public abstract class BaseActivity extends AppCompatActivity  {
         }
 
         return super.onOptionsItemSelected(item);
+
     }
 
 }

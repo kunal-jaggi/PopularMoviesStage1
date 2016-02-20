@@ -28,7 +28,7 @@ public class DiscoverMovieServiceImpl {
     private Bus eventBus;
     List<Movie> popularMovies;
     private final String baseUrl = "https://api.themoviedb.org";
-    private final String apiKey = "d8a4cbb4abdce7744b09bc97e021bf17";
+    private final String apiKey = "YOUR_API_KEY";
     private static final String TAG = "DiscoverMovieService";
 
     public DiscoverMovieServiceImpl(Bus eventBus) {
@@ -40,6 +40,10 @@ public class DiscoverMovieServiceImpl {
         PopularMoviesApplication.getEventBus().register(this);
     }
 
+    /**
+     * Used to make a async call to movies DB to fetch a list of popular movies.
+     * @param event
+     */
     @Subscribe
     public void onDiscoverMovieEvent(DiscoverMovieEvent event) {
 
