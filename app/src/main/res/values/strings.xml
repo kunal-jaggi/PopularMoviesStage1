@@ -3,4 +3,32 @@
     <string name="action_settings">Settings</string>
     <string name="action_sortby_popularity">Popular</string>
     <string name="action_sortby_rating">Ratings</string>
+    <string name="title_activity_details">Movie Details</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_share">Share</string>
+
+
+    <!-- Default postal code for location preference [CHAR LIMIT=NONE] -->
+    <string name="pref_sort_order_default" translatable="false">popularity.desc</string>
+
+    <!-- Label for the temperature units preference [CHAR LIMIT=30] -->
+    <string name="pref_sort_label">Sort By</string>
+
+    <!-- Label for discover movie option in most popular sort order preference [CHAR LIMIT=25] -->
+    <string name="pref_sort_label_most_popular">Most popular</string>
+
+    <!-- Label for discover movie option in highest rated/voted sort order preference [CHAR LIMIT=25] -->
+    <string name="pref_sort_label_highest_rated">Highest rated</string>
+
+    <!-- Key name for temperature unit preference in SharedPreferences [CHAR LIMIT=NONE] -->
+    <string name="pref_sort_key" translatable="false">sortBy</string>
+
+    <!-- Value in SharedPreferences for most popular movie discover option [CHAR LIMIT=NONE] -->
+    <string name="pref_sort_by_popular" translatable="false">popularity.desc</string>
+
+    <!-- Value in SharedPreferences for most rated/voted  movie discover option [CHAR LIMIT=NONE] -->
+    <string name="pref_sort_by_rating" translatable="false">vote_average.desc</string>
+
+
 </resources>

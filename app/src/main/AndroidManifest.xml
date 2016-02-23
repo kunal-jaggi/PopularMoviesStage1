@@ -24,7 +24,26 @@
         </activity>
 
         <activity android:name=".view.impl.MovieGalleryActivity" />
-        <activity android:name=".view.impl.MovieDetailsActivity" />
+
+        <activity
+            android:name=".view.impl.MovieDetailsActivity"
+            android:label="@string/title_activity_details"
+            android:parentActivityName=".view.impl.MovieGalleryActivity" >
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.udacity.popularmovies.stageone.view.impl.MovieGalleryActivity" />
+        </activity>
+
+        <activity
+            android:name=".view.impl.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".view.impl.MovieGalleryActivity" >
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.udacity.popularmovies.stageone.view.impl.MovieGalleryActivity" />
+        </activity>
 
     </application>
 

@@ -1,7 +1,8 @@
 package com.udacity.popularmovies.stageone.view.impl;
 
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,21 +12,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
-import com.squareup.picasso.Picasso;
 import com.udacity.popularmovies.stageone.R;
 import com.udacity.popularmovies.stageone.adapter.GalleryItemAdapter;
 import com.udacity.popularmovies.stageone.event.DiscoverMovieEvent;
 import com.udacity.popularmovies.stageone.event.MovieEvent;
-import com.udacity.popularmovies.stageone.network.DiscoverMovieService;
 import com.udacity.popularmovies.stageone.network.Movie;
-import com.udacity.popularmovies.stageone.network.MovieInfo;
 import com.udacity.popularmovies.stageone.network.impl.DiscoverMovieServiceImpl;
 import com.udacity.popularmovies.stageone.singleton.PopularMoviesApplication;
 
@@ -35,11 +30,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
 
 
 /**
@@ -53,7 +43,7 @@ public class PhotoGalleryFragment extends Fragment {
 
     List<Movie> popularMovies;
 
-    private static final String TAG = PhotoGalleryFragment.class.getName();
+    private static final String LOG_TAG = PhotoGalleryFragment.class.getSimpleName();
 
     public PhotoGalleryFragment() {
     }
@@ -65,6 +55,7 @@ public class PhotoGalleryFragment extends Fragment {
         setHasOptionsMenu(true); // fragment should handle menu events
     }
 
+    //TODO in chapter 3 data from BO is retrieved inside onStart callback
     @Override
     public void onPause() {
         super.onPause();
@@ -76,30 +67,51 @@ public class PhotoGalleryFragment extends Fragment {
         super.onResume();
         service = new DiscoverMovieServiceImpl();
         PopularMoviesApplication.getEventBus().register(this);
-        PopularMoviesApplication.getEventBus().post(produceDiscoverMovieEvent("popularity.desc"));
+        fetchMovies();
+
+    }
+
+    /**
+     * Used to fetch movie list from Open Movie DB REST back-end.
+     * The sort order is retrieved from Shared Preferences
+     */
+    private void fetchMovies() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String sortBy = prefs.getString(getString(R.string.pref_sort_key),
+                getString(R.string.pref_sort_order_default));
+        PopularMoviesApplication.getEventBus().post(produceDiscoverMovieEvent(sortBy));
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         // Inflate the menu; this adds items to the action bar if it is present.
-        inflater.inflate(R.menu.menu_movie, menu);
+        inflater.inflate(R.menu.galleryfragment, menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_sortby_popularity:
-                PopularMoviesApplication.getEventBus().post(produceDiscoverMovieEvent("popularity.desc"));
-                return true;
 
-            case R.id.action_sortby_ratings:
-                PopularMoviesApplication.getEventBus().post(produceDiscoverMovieEvent("vote_average.desc"));
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+        if (id == R.id.action_refresh) {
+            fetchMovies();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
+
+
+//        switch (item.getItemId()) {
+//            case R.id.action_sortby_popularity:
+//                PopularMoviesApplication.getEventBus().post(produceDiscoverMovieEvent("popularity.desc"));
+//                return true;
+//
+//            case R.id.action_sortby_ratings:
+//                PopularMoviesApplication.getEventBus().post(produceDiscoverMovieEvent("vote_average.desc"));
+//                return true;
+//
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
     }
 
     // @Produce
@@ -124,13 +136,9 @@ public class PhotoGalleryFragment extends Fragment {
     @OnItemClick(R.id.moviesGrid)
     void onItemClick(int position) {
         Movie selectedMovie= this.popularMovies.get(position);
-        Log.d(TAG, selectedMovie.getTitle() + selectedMovie.getOriginalLanguage());
-        Toast.makeText(getActivity(), "Clicked position " + position + "!"+ selectedMovie.getTitle(), Toast.LENGTH_SHORT).show();
-
-        Intent showDetailsScreen= new Intent(getContext(), MovieDetailsActivity.class);
-        showDetailsScreen.putExtra("MOVIE_TITLE", selectedMovie.getTitle());
-        startActivity(showDetailsScreen);
-        //should we call finish(); ?
+        Intent intent= new Intent(getContext(), MovieDetailsActivity.class);
+        intent.putExtra(MovieDetailsActivity.EXTRA_MOVIE, selectedMovie);
+        startActivity(intent);
     }
 
     @Subscribe

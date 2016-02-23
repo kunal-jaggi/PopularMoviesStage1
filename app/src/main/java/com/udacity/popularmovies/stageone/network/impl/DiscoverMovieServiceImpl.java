@@ -29,7 +29,8 @@ public class DiscoverMovieServiceImpl {
     List<Movie> popularMovies;
     private final String baseUrl = "https://api.themoviedb.org";
     private final String apiKey = "YOUR_API_KEY";
-    private static final String TAG = "DiscoverMovieService";
+
+    private static final String LOG_TAG = DiscoverMovieServiceImpl.class.getSimpleName();
 
     public DiscoverMovieServiceImpl(Bus eventBus) {
         this.eventBus = eventBus;
@@ -67,7 +68,7 @@ public class DiscoverMovieServiceImpl {
                 } else {
                     //request not successful (like 400,401,403 etc)
                     //Handle errors
-                    Log.d(TAG, "Web call error");
+                    Log.d(LOG_TAG, "Web call error");
                 }
             }
 
