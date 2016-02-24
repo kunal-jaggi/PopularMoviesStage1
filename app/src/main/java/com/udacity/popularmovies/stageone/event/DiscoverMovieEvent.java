@@ -4,20 +4,20 @@ package com.udacity.popularmovies.stageone.event;
  * Created by kunaljaggi on 2/18/16.
  */
 public class DiscoverMovieEvent {
-    private String sortBy;
+    private String mSortBy;
 
     public DiscoverMovieEvent(String sortBy) {
-        this.sortBy = sortBy;
+        mSortBy= sortBy;
     }
 
     public DiscoverMovieEvent() {
     }
 
-    public String getSortBy() {
-        return sortBy;
+    public String getmSortBy() {
+        return mSortBy;
     }
 
-    public void setSortBy(String sortBy) {
-        this.sortBy = sortBy;
+    public void setmSortBy(String mSortBy) {
+        this.mSortBy = mSortBy;
     }
 }

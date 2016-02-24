@@ -1,11 +1,10 @@
-package com.udacity.popularmovies.stageone.view.impl;
+package com.udacity.popularmovies.stageone.view;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,15 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import com.squareup.otto.Subscribe;
 import com.udacity.popularmovies.stageone.R;
 import com.udacity.popularmovies.stageone.adapter.GalleryItemAdapter;
 import com.udacity.popularmovies.stageone.event.DiscoverMovieEvent;
 import com.udacity.popularmovies.stageone.event.MovieEvent;
-import com.udacity.popularmovies.stageone.network.Movie;
-import com.udacity.popularmovies.stageone.network.impl.DiscoverMovieServiceImpl;
+import com.udacity.popularmovies.stageone.network.model.Movie;
+import com.udacity.popularmovies.stageone.network.service.DiscoverMovieServiceImpl;
 import com.udacity.popularmovies.stageone.singleton.PopularMoviesApplication;
 
 
@@ -136,8 +134,8 @@ public class PhotoGalleryFragment extends Fragment {
     @OnItemClick(R.id.moviesGrid)
     void onItemClick(int position) {
         Movie selectedMovie= this.popularMovies.get(position);
-        Intent intent= new Intent(getContext(), MovieDetailsActivity.class);
-        intent.putExtra(MovieDetailsActivity.EXTRA_MOVIE, selectedMovie);
+        Intent intent= new Intent(getContext(), DetailsActivity.class);
+        intent.putExtra(DetailsActivity.EXTRA_MOVIE, selectedMovie);
         startActivity(intent);
     }
 

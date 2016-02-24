@@ -1,10 +1,10 @@
-package com.udacity.popularmovies.stageone.view.impl;
+package com.udacity.popularmovies.stageone.view;
 
 import android.os.Bundle;
 
 import com.udacity.popularmovies.stageone.R;
 
-public class MovieGalleryActivity extends BaseActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

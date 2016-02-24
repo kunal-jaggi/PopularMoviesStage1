@@ -1,4 +1,4 @@
-package com.udacity.popularmovies.stageone.network;
+package com.udacity.popularmovies.stageone.network.model;
 
 /**
  * Created by kunaljaggi on 2/17/16.

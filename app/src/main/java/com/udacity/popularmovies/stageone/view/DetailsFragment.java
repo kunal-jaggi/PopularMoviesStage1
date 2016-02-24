@@ -1,4 +1,4 @@
-package com.udacity.popularmovies.stageone.view.impl;
+package com.udacity.popularmovies.stageone.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,24 +12,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.squareup.otto.Subscribe;
+import com.squareup.picasso.Picasso;
 import com.udacity.popularmovies.stageone.R;
-import com.udacity.popularmovies.stageone.adapter.GalleryItemAdapter;
-import com.udacity.popularmovies.stageone.event.DiscoverMovieEvent;
-import com.udacity.popularmovies.stageone.event.MovieEvent;
-import com.udacity.popularmovies.stageone.network.Movie;
-import com.udacity.popularmovies.stageone.network.impl.DiscoverMovieServiceImpl;
-import com.udacity.popularmovies.stageone.singleton.PopularMoviesApplication;
-
-import java.util.List;
+import com.udacity.popularmovies.stageone.network.model.Movie;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnItemClick;
 
 /**
  * Created by kunaljaggi on 2/20/16.
@@ -38,10 +29,14 @@ public class DetailsFragment extends Fragment {
 
     private static final String LOG_TAG = DetailsFragment.class.getSimpleName();
     private static final String MOVIE_DETAILS_SHARE_HASHTAG = " #PopularMoviesApp";
+    private static final String MOVIE_POSTAR_URL="http://image.tmdb.org/t/p/w185/";
     private String mMovieTitle;
 
-    @Bind(R.id.movieTitle)
-    TextView mMovieTileTxt;
+    @Bind(R.id.movieTitle) TextView mMovieTileTxt;
+    @Bind(R.id.moviePoster) ImageView mMoviePoster;
+    @Bind(R.id.movieReleaseYear) TextView mMovieReleaseYear;
+    @Bind(R.id.movieRating) TextView mMovieRating;
+    @Bind(R.id.movieOverview) TextView mMovieOverview;
 
     public DetailsFragment() {
     }
@@ -70,12 +65,26 @@ public class DetailsFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         Intent intent = getActivity().getIntent();
-        if (intent != null && intent.hasExtra(MovieDetailsActivity.EXTRA_MOVIE)) {
-            Movie selectedMovie = intent.getParcelableExtra(MovieDetailsActivity.EXTRA_MOVIE);
-            mMovieTileTxt.setText(selectedMovie.getTitle());
+        if (intent != null && intent.hasExtra(DetailsActivity.EXTRA_MOVIE)) {
+            Movie selectedMovie = intent.getParcelableExtra(DetailsActivity.EXTRA_MOVIE);
+            fillDetailScreen(selectedMovie);
         }
 
         return view;
+    }
+
+    /**
+     * Used to render original title, poster image, overview (plot), user rating and release date.
+     * @param selectedMovie
+     */
+    private void fillDetailScreen(Movie selectedMovie) {
+        mMovieTileTxt.setText(selectedMovie.getTitle());
+        Picasso.with(getContext())
+                .load(MOVIE_POSTAR_URL + selectedMovie.getPosterPath())
+                .into(mMoviePoster);
+        mMovieReleaseYear.setText(selectedMovie.getReleaseDate());
+        mMovieRating.setText(""+selectedMovie.getVoteAverage()+"/10");
+        mMovieOverview.setText(selectedMovie.getOverview());
     }
 
     @Override

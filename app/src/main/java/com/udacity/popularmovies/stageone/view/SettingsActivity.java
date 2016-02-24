@@ -1,4 +1,4 @@
-package com.udacity.popularmovies.stageone.view.impl;
+package com.udacity.popularmovies.stageone.view;
 
 import android.os.Bundle;
 import android.preference.ListPreference;

@@ -9,7 +9,8 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 import com.udacity.popularmovies.stageone.R;
-import com.udacity.popularmovies.stageone.network.Movie;
+import com.udacity.popularmovies.stageone.network.model.Movie;
+import com.udacity.popularmovies.stageone.util.Constants;
 
 import java.util.List;
 
@@ -17,23 +18,24 @@ import java.util.List;
  * Created by kunaljaggi on 2/19/16.
  */
 public class GalleryItemAdapter extends ArrayAdapter<Movie> {
-    private Context context;
-    private List<Movie> movies;
+
+    private Context mContext;
+    private List<Movie> mMovieList;
 
     public GalleryItemAdapter(Context context, List<Movie> movies) {
         super(context, 0, movies);
-        this.context= context;
-        this.movies = movies;
+        mContext= context;
+        mMovieList = movies;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.gallery_item, parent, false);
+            convertView = ((LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.gallery_item, parent, false);
         }
         ImageView imageView = (ImageView) convertView.findViewById(R.id.gallery_item_imageView);
-        Picasso.with(context)
-                .load("http://image.tmdb.org/t/p/w185/" + movies.get(position).getPosterPath())
+        Picasso.with(mContext)
+                .load(Constants.IMAGE_DB_POSTER_URL + mMovieList.get(position).getPosterPath())
                 .into(imageView);
         return convertView;
     }

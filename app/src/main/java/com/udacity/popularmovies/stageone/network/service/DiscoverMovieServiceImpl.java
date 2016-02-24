@@ -1,16 +1,15 @@
-package com.udacity.popularmovies.stageone.network.impl;
+package com.udacity.popularmovies.stageone.network.service;
 
 import android.util.Log;
 
 import com.squareup.otto.Bus;
-import com.squareup.otto.Produce;
 import com.squareup.otto.Subscribe;
 import com.udacity.popularmovies.stageone.event.DiscoverMovieEvent;
 import com.udacity.popularmovies.stageone.event.MovieEvent;
-import com.udacity.popularmovies.stageone.network.DiscoverMovieService;
-import com.udacity.popularmovies.stageone.network.Movie;
-import com.udacity.popularmovies.stageone.network.MovieInfo;
+import com.udacity.popularmovies.stageone.network.model.Movie;
+import com.udacity.popularmovies.stageone.network.model.MovieInfo;
 import com.udacity.popularmovies.stageone.singleton.PopularMoviesApplication;
+import com.udacity.popularmovies.stageone.util.Constants;
 
 import java.util.List;
 
@@ -27,8 +26,6 @@ public class DiscoverMovieServiceImpl {
 
     private Bus eventBus;
     List<Movie> popularMovies;
-    private final String baseUrl = "https://api.themoviedb.org";
-    private final String apiKey = "YOUR_API_KEY";
 
     private static final String LOG_TAG = DiscoverMovieServiceImpl.class.getSimpleName();
 
@@ -49,13 +46,13 @@ public class DiscoverMovieServiceImpl {
     public void onDiscoverMovieEvent(DiscoverMovieEvent event) {
 
         Retrofit client = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(Constants.IMAGE_DB_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         DiscoverMovieService api = client.create(DiscoverMovieService.class);
 
-        Call<MovieInfo> restCall = api.getPopularMovies(event.getSortBy(), apiKey);
+        Call<MovieInfo> restCall = api.getPopularMovies(event.getmSortBy(), Constants.API_KEY);
 
         restCall.enqueue(new Callback<MovieInfo>() {
             @Override
