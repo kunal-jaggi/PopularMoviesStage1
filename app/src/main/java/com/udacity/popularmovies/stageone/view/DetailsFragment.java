@@ -20,6 +20,9 @@ import com.udacity.popularmovies.stageone.R;
 import com.udacity.popularmovies.stageone.network.model.Movie;
 import com.udacity.popularmovies.stageone.util.Constants;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -66,11 +69,13 @@ public class DetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_details, container, false);
         ButterKnife.bind(this, view);
 
+        //Parent activity is started by firing-off an explicit intent.
+        //Inspect the intent for movie data.
         Intent intent = getActivity().getIntent();
         if (intent != null && intent.hasExtra(DetailsActivity.EXTRA_MOVIE)) {
             Movie selectedMovie = intent.getParcelableExtra(DetailsActivity.EXTRA_MOVIE);
-            if(selectedMovie != null){
-                mMovieTitle= selectedMovie.getTitle();
+            if (selectedMovie != null) {
+                mMovieTitle = selectedMovie.getmTitle();
                 fillDetailScreen(selectedMovie);
             }
         }
@@ -80,16 +85,27 @@ public class DetailsFragment extends Fragment {
 
     /**
      * Used to render original title, poster image, overview (plot), user rating and release date.
+     *
      * @param selectedMovie
      */
     private void fillDetailScreen(final Movie selectedMovie) {
-        mMovieTileTxt.setText(selectedMovie.getTitle());
+        mMovieTileTxt.setText(selectedMovie.getmTitle());
         Picasso.with(getContext())
-                .load(Constants.MOVIE_POSTAR_URL + selectedMovie.getPosterPath())
+                .load(Constants.MOVIE_DB_POSTAR_URL + selectedMovie.getmPosterPath())
                 .into(mMoviePoster);
-        mMovieReleaseYear.setText(selectedMovie.getReleaseDate());
-        mMovieRating.setText(""+selectedMovie.getVoteAverage()+"/10");
-        mMovieOverview.setText(selectedMovie.getOverview());
+        mMovieRating.setText("" + selectedMovie.getmVoteAverage() + "/10");
+        mMovieOverview.setText(selectedMovie.getmOverview());
+
+        // Movie DB API returns release date in yyyy--mm-dd format
+        // Extract the year through regex
+        Pattern datePattern = Pattern.compile("(\\d{4})-(\\d{2})-(\\d{2})");
+        String year = selectedMovie.getmReleaseDate();
+        Matcher dateMatcher = datePattern.matcher(year);
+        if (dateMatcher.find()) {
+            year = dateMatcher.group(1);
+
+        }
+        mMovieReleaseYear.setText(year);
     }
 
     @Override
@@ -114,7 +130,7 @@ public class DetailsFragment extends Fragment {
     }
 
     /**
-     * Returns an implicit intent to launch another app.
+     * Returns an implicit intent to launch another app. Movie title is added as intent extra.
      *
      * @return intent
      */

@@ -1,6 +1,7 @@
 package com.udacity.popularmovies.stageone.network.model;
 
 /**
+ * A POJO that represents Movie object.
  * Created by kunaljaggi on 2/17/16.
  */
 import android.os.Parcel;
@@ -13,147 +14,131 @@ import java.util.List;
 
 
 public class Movie implements Parcelable {
-    public int id;
-    public boolean adult;
-    public String overview;
-    public String title;
-    public float popularity;
-    public boolean video;
+    @SerializedName("id") private int mId;
+    @SerializedName("adult") private boolean mAdult;
+    @SerializedName("overview") private String mOverview;
+    @SerializedName("title") private String mTitle;
+    @SerializedName("popularity") private float mPopularity;
+    @SerializedName("video") private boolean mVideo;
+    @SerializedName("poster_path") private String mPosterPath;
+    @SerializedName("release_date") private String mReleaseDate;
+    @SerializedName("genre_ids") private List<Integer> mGenreIds = new ArrayList<Integer>();
+    @SerializedName("original_title") private String mOriginalTitle;
+    @SerializedName("original_language") private String mOriginalLanguage;
+    @SerializedName("backdrop_path") private String mBackdropPath;
+    @SerializedName("vote_count") private int mVoteCount;
+    @SerializedName("vote_average") private float mVoteAverage;
 
-    @SerializedName("poster_path")
-    public String posterPath;
-
-    @SerializedName("release_date")
-    public String releaseDate;
-
-    @SerializedName("genre_ids")
-    public List<Integer> genreIds = new ArrayList<Integer>();
-
-    @SerializedName("original_title")
-    public String originalTitle;
-
-    @SerializedName("original_language")
-    public String originalLanguage;
-
-    @SerializedName("backdrop_path")
-    public String backdropPath;
-
-    @SerializedName("vote_count")
-    public int voteCount;
-
-    @SerializedName("vote_average")
-    public float voteAverage;
-
-    public String getPosterPath() {
-        return posterPath;
+    public int getmId() {
+        return mId;
     }
 
-    public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
+    public void setmId(int mId) {
+        this.mId = mId;
     }
 
-    public boolean isAdult() {
-        return adult;
+    public boolean ismAdult() {
+        return mAdult;
     }
 
-    public void setAdult(boolean adult) {
-        this.adult = adult;
+    public void setmAdult(boolean mAdult) {
+        this.mAdult = mAdult;
     }
 
-    public String getOverview() {
-        return overview;
+    public String getmOverview() {
+        return mOverview;
     }
 
-    public void setOverview(String overview) {
-        this.overview = overview;
+    public void setmOverview(String mOverview) {
+        this.mOverview = mOverview;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getmTitle() {
+        return mTitle;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setmTitle(String mTitle) {
+        this.mTitle = mTitle;
     }
 
-    public List<Integer> getGenreIds() {
-        return genreIds;
+    public float getmPopularity() {
+        return mPopularity;
     }
 
-    public void setGenreIds(List<Integer> genreIds) {
-        this.genreIds = genreIds;
+    public void setmPopularity(float mPopularity) {
+        this.mPopularity = mPopularity;
     }
 
-    public int getId() {
-        return id;
+    public boolean ismVideo() {
+        return mVideo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setmVideo(boolean mVideo) {
+        this.mVideo = mVideo;
     }
 
-    public String getOriginalTitle() {
-        return originalTitle;
+    public String getmPosterPath() {
+        return mPosterPath;
     }
 
-    public void setOriginalTitle(String originalTitle) {
-        this.originalTitle = originalTitle;
+    public void setmPosterPath(String mPosterPath) {
+        this.mPosterPath = mPosterPath;
     }
 
-    public String getOriginalLanguage() {
-        return originalLanguage;
+    public String getmReleaseDate() {
+        return mReleaseDate;
     }
 
-    public void setOriginalLanguage(String originalLanguage) {
-        this.originalLanguage = originalLanguage;
+    public void setmReleaseDate(String mReleaseDate) {
+        this.mReleaseDate = mReleaseDate;
     }
 
-    public String getTitle() {
-        return title;
+    public List<Integer> getmGenreIds() {
+        return mGenreIds;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setmGenreIds(List<Integer> mGenreIds) {
+        this.mGenreIds = mGenreIds;
     }
 
-    public String getBackdropPath() {
-        return backdropPath;
+    public String getmOriginalTitle() {
+        return mOriginalTitle;
     }
 
-    public void setBackdropPath(String backdropPath) {
-        this.backdropPath = backdropPath;
+    public void setmOriginalTitle(String mOriginalTitle) {
+        this.mOriginalTitle = mOriginalTitle;
     }
 
-    public float getPopularity() {
-        return popularity;
+    public String getmOriginalLanguage() {
+        return mOriginalLanguage;
     }
 
-    public void setPopularity(float popularity) {
-        this.popularity = popularity;
+    public void setmOriginalLanguage(String mOriginalLanguage) {
+        this.mOriginalLanguage = mOriginalLanguage;
     }
 
-    public int getVoteCount() {
-        return voteCount;
+    public String getmBackdropPath() {
+        return mBackdropPath;
     }
 
-    public void setVoteCount(int voteCount) {
-        this.voteCount = voteCount;
+    public void setmBackdropPath(String mBackdropPath) {
+        this.mBackdropPath = mBackdropPath;
     }
 
-    public boolean isVideo() {
-        return video;
+    public int getmVoteCount() {
+        return mVoteCount;
     }
 
-    public void setVideo(boolean video) {
-        this.video = video;
+    public void setmVoteCount(int mVoteCount) {
+        this.mVoteCount = mVoteCount;
     }
 
-    public float getVoteAverage() {
-        return voteAverage;
+    public float getmVoteAverage() {
+        return mVoteAverage;
     }
 
-    public void setVoteAverage(float voteAverage) {
-        this.voteAverage = voteAverage;
+    public void setmVoteAverage(float mVoteAverage) {
+        this.mVoteAverage = mVoteAverage;
     }
 
     @Override
@@ -163,20 +148,20 @@ public class Movie implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeByte((byte) (adult ? 1 : 0));
-        dest.writeString(overview);
-        dest.writeString(title);
-        dest.writeFloat(popularity);
-        dest.writeByte((byte) (video ? 1 : 0));
-        dest.writeString(posterPath);
-        dest.writeString(releaseDate);
-        dest.writeList(genreIds);
-        dest.writeString(originalTitle);
-        dest.writeString(originalLanguage);
-        dest.writeString(backdropPath);
-        dest.writeInt(voteCount);
-        dest.writeFloat(voteAverage);
+        dest.writeInt(mId);
+        dest.writeByte((byte) (mAdult ? 1 : 0));
+        dest.writeString(mOverview);
+        dest.writeString(mTitle);
+        dest.writeFloat(mPopularity);
+        dest.writeByte((byte) (mVideo ? 1 : 0));
+        dest.writeString(mPosterPath);
+        dest.writeString(mReleaseDate);
+        dest.writeList(mGenreIds);
+        dest.writeString(mOriginalTitle);
+        dest.writeString(mOriginalLanguage);
+        dest.writeString(mBackdropPath);
+        dest.writeInt(mVoteCount);
+        dest.writeFloat(mVoteAverage);
     }
 
     public Movie() {
@@ -188,20 +173,20 @@ public class Movie implements Parcelable {
      * @param in used to retrieve the values that we originally wrote into the `Parcel`
      */
     private Movie(Parcel in) {
-        id = in.readInt();
-        adult = in.readByte() != 0;
-        overview = in.readString();
-        title= in.readString();
-        popularity= in.readFloat();
-        video = in.readByte() != 0;
-        posterPath= in.readString();
-        releaseDate= in.readString();
-        in.readList(genreIds,null);
-        originalTitle= in.readString();
-        originalLanguage= in.readString();
-        backdropPath= in.readString();
-        voteCount= in.readInt();
-        voteAverage= in.readFloat();
+        mId = in.readInt();
+        mAdult = in.readByte() != 0;
+        mOverview = in.readString();
+        mTitle= in.readString();
+        mPopularity= in.readFloat();
+        mVideo = in.readByte() != 0;
+        mPosterPath= in.readString();
+        mReleaseDate= in.readString();
+        in.readList(mGenreIds,null);
+        mOriginalTitle= in.readString();
+        mOriginalLanguage= in.readString();
+        mBackdropPath= in.readString();
+        mVoteCount= in.readInt();
+        mVoteAverage= in.readFloat();
 
     }
 

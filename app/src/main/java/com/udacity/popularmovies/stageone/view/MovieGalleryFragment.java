@@ -33,17 +33,15 @@ import butterknife.OnItemClick;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class PhotoGalleryFragment extends Fragment {
-    private static final String LOG_TAG = PhotoGalleryFragment.class.getSimpleName();
+public class MovieGalleryFragment extends Fragment {
 
-    @Bind(R.id.moviesGrid)
-    GridView mMovieGrid;
+    private static final String LOG_TAG = MovieGalleryFragment.class.getSimpleName();
 
+    @Bind(R.id.moviesGrid) GridView mMovieGrid;
     private DiscoverMovieServiceImpl mMovieService;
     private List<Movie> mMovieList;
 
-
-    public PhotoGalleryFragment() {
+    public MovieGalleryFragment() {
     }
 
     @Override
@@ -66,11 +64,10 @@ public class PhotoGalleryFragment extends Fragment {
         mMovieService = new DiscoverMovieServiceImpl();
         PopularMoviesApplication.getEventBus().register(this);
         fetchMovies();
-
     }
 
     /**
-     * Used to fetch movie list from Open Movie DB REST back-end.
+     * Used to fire an event to the Bus that will fetch movie list from Open Movie DB REST back-end.
      * The sort order is retrieved from Shared Preferences
      */
     private void fetchMovies() {
@@ -99,7 +96,6 @@ public class PhotoGalleryFragment extends Fragment {
 
     }
 
-    // @Produce
     public DiscoverMovieEvent produceDiscoverMovieEvent(String queryParam) {
         return new DiscoverMovieEvent(queryParam);
     }
@@ -117,7 +113,7 @@ public class PhotoGalleryFragment extends Fragment {
     /**
      * Used to navigate to Details screen through explicit intent.
      *
-     * @param position
+     * @param position grid item position clicked by the user.
      */
     @OnItemClick(R.id.moviesGrid)
     void onItemClick(int position) {

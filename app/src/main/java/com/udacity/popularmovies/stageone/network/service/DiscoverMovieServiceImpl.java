@@ -24,13 +24,13 @@ import retrofit.Retrofit;
  */
 public class DiscoverMovieServiceImpl {
 
-    private Bus eventBus;
-    List<Movie> popularMovies;
+    private Bus mEventBus;
+    private List<Movie> mMovieList;
 
     private static final String LOG_TAG = DiscoverMovieServiceImpl.class.getSimpleName();
 
     public DiscoverMovieServiceImpl(Bus eventBus) {
-        this.eventBus = eventBus;
+        mEventBus = eventBus;
         eventBus.register(this);
     }
 
@@ -40,19 +40,20 @@ public class DiscoverMovieServiceImpl {
 
     /**
      * Used to make a async call to movies DB to fetch a list of popular movies.
+     *
      * @param event
      */
     @Subscribe
     public void onDiscoverMovieEvent(DiscoverMovieEvent event) {
 
         Retrofit client = new Retrofit.Builder()
-                .baseUrl(Constants.IMAGE_DB_BASE_URL)
+                .baseUrl(Constants.MOVIE_DB_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         DiscoverMovieService api = client.create(DiscoverMovieService.class);
 
-        Call<MovieInfo> restCall = api.getPopularMovies(event.getmSortBy(), Constants.API_KEY);
+        Call<MovieInfo> restCall = api.getPopularMovies(event.getmSortBy(), Constants.MOVIE_DB_API_KEY);
 
         restCall.enqueue(new Callback<MovieInfo>() {
             @Override
@@ -60,7 +61,7 @@ public class DiscoverMovieServiceImpl {
                 if (response.isSuccess()) {
                     // request successful (status code 200, 201)
                     MovieInfo movieInfo = response.body();
-                    popularMovies = movieInfo.getMovieList();
+                    mMovieList = movieInfo.getmMovieList();
                     PopularMoviesApplication.getEventBus().post(produceMovieEvent());
                 } else {
                     //request not successful (like 400,401,403 etc)
@@ -76,8 +77,7 @@ public class DiscoverMovieServiceImpl {
         });
     }
 
-    //@Produce
     public MovieEvent produceMovieEvent() {
-        return new MovieEvent(popularMovies);
+        return new MovieEvent(mMovieList);
     }
 }

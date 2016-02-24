@@ -1,6 +1,7 @@
 package com.udacity.popularmovies.stageone.network.model;
 
 /**
+ * A POJO that represents Movie list from Open Movie DB API.
  * Created by kunaljaggi on 2/17/16.
  */
 
@@ -13,56 +14,56 @@ import java.util.List;
 
 public class MovieInfo {
 
-    public int page;
+    private int mPage;
 
     @SerializedName("results")
-    public List<Movie> movieList = new ArrayList<Movie>();
+    private List<Movie> mMovieList = new ArrayList<Movie>();
 
     @SerializedName("total_results")
-    public int totalResults;
+    private int mTotalResults;
 
     @SerializedName("total_pages")
-    public int totalPages;
+    private int mTotalPages;
 
     public MovieInfo() {
     }
 
-    public MovieInfo(int page, List<Movie> movieList, int totalResults, int totalPages) {
-        this.page = page;
-        this.movieList = movieList;
-        this.totalResults = totalResults;
-        this.totalPages = totalPages;
+    public MovieInfo(int mPage, List<Movie> mMovieList, int mTotalResults, int mTotalPages) {
+        this.mPage = mPage;
+        this.mMovieList = mMovieList;
+        this.mTotalResults = mTotalResults;
+        this.mTotalPages = mTotalPages;
     }
 
-    public int getPage() {
-        return page;
+    public int getmPage() {
+        return mPage;
     }
 
-    public void setPage(int page) {
-        this.page = page;
+    public void setmPage(int mPage) {
+        this.mPage = mPage;
     }
 
-    public List<Movie> getMovieList() {
-        return movieList;
+    public List<Movie> getmMovieList() {
+        return mMovieList;
     }
 
-    public void setMovieList(List<Movie> movieList) {
-        this.movieList = movieList;
+    public void setmMovieList(List<Movie> mMovieList) {
+        this.mMovieList = mMovieList;
     }
 
-    public int getTotalResults() {
-        return totalResults;
+    public int getmTotalResults() {
+        return mTotalResults;
     }
 
-    public void setTotalResults(int totalResults) {
-        this.totalResults = totalResults;
+    public void setmTotalResults(int mTotalResults) {
+        this.mTotalResults = mTotalResults;
     }
 
-    public int getTotalPages() {
-        return totalPages;
+    public int getmTotalPages() {
+        return mTotalPages;
     }
 
-    public void setTotalPages(int totalPages) {
-        this.totalPages = totalPages;
+    public void setmTotalPages(int mTotalPages) {
+        this.mTotalPages = mTotalPages;
     }
 }
