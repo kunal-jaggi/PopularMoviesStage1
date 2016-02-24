@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import com.udacity.popularmovies.stageone.R;
 
 /**
- * Parent of all Activities. It defines variables that are being shared across all activities.
+ * Parent of all Activities.
  * Created by kunaljaggi on 2/14/16.
  */
 

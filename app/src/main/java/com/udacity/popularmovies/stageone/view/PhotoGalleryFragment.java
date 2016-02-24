@@ -34,14 +34,14 @@ import butterknife.OnItemClick;
  * A placeholder fragment containing a simple view.
  */
 public class PhotoGalleryFragment extends Fragment {
-    @Bind(R.id.moviesGrid)
-    GridView moviesGrid;
-
-    DiscoverMovieServiceImpl service;
-
-    List<Movie> popularMovies;
-
     private static final String LOG_TAG = PhotoGalleryFragment.class.getSimpleName();
+
+    @Bind(R.id.moviesGrid)
+    GridView mMovieGrid;
+
+    private DiscoverMovieServiceImpl mMovieService;
+    private List<Movie> mMovieList;
+
 
     public PhotoGalleryFragment() {
     }
@@ -63,7 +63,7 @@ public class PhotoGalleryFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        service = new DiscoverMovieServiceImpl();
+        mMovieService = new DiscoverMovieServiceImpl();
         PopularMoviesApplication.getEventBus().register(this);
         fetchMovies();
 
@@ -97,19 +97,6 @@ public class PhotoGalleryFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
 
-
-//        switch (item.getItemId()) {
-//            case R.id.action_sortby_popularity:
-//                PopularMoviesApplication.getEventBus().post(produceDiscoverMovieEvent("popularity.desc"));
-//                return true;
-//
-//            case R.id.action_sortby_ratings:
-//                PopularMoviesApplication.getEventBus().post(produceDiscoverMovieEvent("vote_average.desc"));
-//                return true;
-//
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
     }
 
     // @Produce
@@ -129,29 +116,30 @@ public class PhotoGalleryFragment extends Fragment {
 
     /**
      * Used to navigate to Details screen through explicit intent.
+     *
      * @param position
      */
     @OnItemClick(R.id.moviesGrid)
     void onItemClick(int position) {
-        Movie selectedMovie= this.popularMovies.get(position);
-        Intent intent= new Intent(getContext(), DetailsActivity.class);
+        Movie selectedMovie = mMovieList.get(position);
+        Intent intent = new Intent(getContext(), DetailsActivity.class);
         intent.putExtra(DetailsActivity.EXTRA_MOVIE, selectedMovie);
         startActivity(intent);
     }
 
     @Subscribe
     public void onMovieEvent(MovieEvent movieEvent) {
-        popularMovies = movieEvent.getMovies();
+        mMovieList = movieEvent.getmMovieList();
         setupAdapter();
     }
 
     private void setupAdapter() {
-        if (getActivity() == null || moviesGrid == null) return;
+        if (getActivity() == null || mMovieGrid == null) return;
 
-        if (popularMovies != null) {
-            moviesGrid.setAdapter(new GalleryItemAdapter(getContext(), popularMovies));
+        if (mMovieList != null) {
+            mMovieGrid.setAdapter(new GalleryItemAdapter(getContext(), mMovieList));
         } else {
-            moviesGrid.setAdapter(null);
+            mMovieGrid.setAdapter(null);
         }
     }
 }

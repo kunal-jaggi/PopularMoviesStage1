@@ -35,7 +35,7 @@ public class GalleryItemAdapter extends ArrayAdapter<Movie> {
         }
         ImageView imageView = (ImageView) convertView.findViewById(R.id.gallery_item_imageView);
         Picasso.with(mContext)
-                .load(Constants.IMAGE_DB_POSTER_URL + mMovieList.get(position).getPosterPath())
+                .load(Constants.MOVIE_POSTAR_URL + mMovieList.get(position).getPosterPath())
                 .into(imageView);
         return convertView;
     }

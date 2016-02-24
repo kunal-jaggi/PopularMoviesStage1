@@ -4,6 +4,11 @@ import android.os.Bundle;
 
 import com.udacity.popularmovies.stageone.R;
 
+/**
+ * This is the main launcher Activity for the app. This Activity registers an intent-filter with launcher app.
+ * Created by kunaljaggi on 2/14/16.
+ */
+
 public class MainActivity extends BaseActivity {
 
     @Override
@@ -11,7 +16,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //add Fragment in code
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new PhotoGalleryFragment())

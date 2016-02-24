@@ -18,25 +18,27 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.udacity.popularmovies.stageone.R;
 import com.udacity.popularmovies.stageone.network.model.Movie;
+import com.udacity.popularmovies.stageone.util.Constants;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
+ * This Fragment class is added by DetailsActivity to show details screen.
  * Created by kunaljaggi on 2/20/16.
  */
 public class DetailsFragment extends Fragment {
 
     private static final String LOG_TAG = DetailsFragment.class.getSimpleName();
     private static final String MOVIE_DETAILS_SHARE_HASHTAG = " #PopularMoviesApp";
-    private static final String MOVIE_POSTAR_URL="http://image.tmdb.org/t/p/w185/";
-    private String mMovieTitle;
 
     @Bind(R.id.movieTitle) TextView mMovieTileTxt;
     @Bind(R.id.moviePoster) ImageView mMoviePoster;
     @Bind(R.id.movieReleaseYear) TextView mMovieReleaseYear;
     @Bind(R.id.movieRating) TextView mMovieRating;
     @Bind(R.id.movieOverview) TextView mMovieOverview;
+
+    private String mMovieTitle;
 
     public DetailsFragment() {
     }
@@ -67,7 +69,10 @@ public class DetailsFragment extends Fragment {
         Intent intent = getActivity().getIntent();
         if (intent != null && intent.hasExtra(DetailsActivity.EXTRA_MOVIE)) {
             Movie selectedMovie = intent.getParcelableExtra(DetailsActivity.EXTRA_MOVIE);
-            fillDetailScreen(selectedMovie);
+            if(selectedMovie != null){
+                mMovieTitle= selectedMovie.getTitle();
+                fillDetailScreen(selectedMovie);
+            }
         }
 
         return view;
@@ -77,10 +82,10 @@ public class DetailsFragment extends Fragment {
      * Used to render original title, poster image, overview (plot), user rating and release date.
      * @param selectedMovie
      */
-    private void fillDetailScreen(Movie selectedMovie) {
+    private void fillDetailScreen(final Movie selectedMovie) {
         mMovieTileTxt.setText(selectedMovie.getTitle());
         Picasso.with(getContext())
-                .load(MOVIE_POSTAR_URL + selectedMovie.getPosterPath())
+                .load(Constants.MOVIE_POSTAR_URL + selectedMovie.getPosterPath())
                 .into(mMoviePoster);
         mMovieReleaseYear.setText(selectedMovie.getReleaseDate());
         mMovieRating.setText(""+selectedMovie.getVoteAverage()+"/10");
@@ -102,7 +107,7 @@ public class DetailsFragment extends Fragment {
         // Attach an intent to this ShareActionProvider.  You can update this at any time,
         // like when the user selects a new piece of data they might like to share.
         if (mShareActionProvider != null) {
-            mShareActionProvider.setShareIntent(createShareForecastIntent());
+            mShareActionProvider.setShareIntent(createShareMovieIntent());
         } else {
             Log.d(LOG_TAG, "Share Action Provider is null?");
         }
@@ -111,9 +116,9 @@ public class DetailsFragment extends Fragment {
     /**
      * Returns an implicit intent to launch another app.
      *
-     * @return
+     * @return intent
      */
-    private Intent createShareForecastIntent() {
+    private Intent createShareMovieIntent() {
         Intent shareIntent = new Intent(Intent.ACTION_SEND); //generic action
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET); //required to return to Popular Movies app
         shareIntent.setType("text/plain");
