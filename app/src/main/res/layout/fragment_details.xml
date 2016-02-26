@@ -1,66 +1,63 @@
-<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
-<RelativeLayout
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.DetailsFragment">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/movieTitlePlaceHolder"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@color/primary_dark">
+        android:layout_height="match_parent"
+        tools:context=".view.DetailsFragment">
 
+        <LinearLayout
+            android:id="@+id/movieTitlePlaceHolder"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/primary_dark">
+
+            <TextView
+                android:id="@+id/movieTitle"
+                style="@style/MovieTitle" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/moviePoster"
+            style="@style/MovieItemPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/movieTitlePlaceHolder"
+            android:layout_marginTop="10dp" />
 
         <TextView
-            android:id="@+id/movieTitle"
-            style="@style/MovieTitle" />
+            android:id="@+id/movieReleaseYear"
+            style="@style/MovieItemPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="100dp"
+            android:layout_toRightOf="@id/moviePoster"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        />
 
+        <TextView
+            android:id="@+id/movieRating"
+            style="@style/MovieItemPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="150dp"
+            android:layout_toRightOf="@id/moviePoster"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        />
 
-    </LinearLayout>
-
-
-    <ImageView
-        android:id="@+id/moviePoster"
-        style="@style/MovieItemPadding"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/movieTitlePlaceHolder"
-        android:layout_marginTop="10dp"/>
-
-    <TextView
-        android:id="@+id/movieReleaseYear"
-        style="@style/MovieItemPadding"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/moviePoster"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="100dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
-    />
-
-    <TextView
-        android:id="@+id/movieRating"
-        style="@style/MovieItemPadding"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/moviePoster"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="150dp"
-        android:textAppearance="?android:attr/textAppearanceSmall"/>
-    />
-
-    <TextView
-        android:id="@+id/movieOverview"
-        style="@style/MovieItemPadding"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/moviePoster"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"/>
-    />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/movieOverview"
+            style="@style/MovieItemPadding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/moviePoster"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        />
+    </RelativeLayout>
 </ScrollView>

@@ -15,6 +15,9 @@ import com.udacity.popularmovies.stageone.util.Constants;
 import java.util.List;
 
 /**
+ * This class acts as a bridge between movie grid (a subclass of AdapterView)
+ * and the underlying data for the movie Grid. The Adapter provides access to the data items.
+ * This Adapter is also responsible for making a View for each item in the data set.
  * Created by kunaljaggi on 2/19/16.
  */
 public class GalleryItemAdapter extends ArrayAdapter<Movie> {
@@ -24,7 +27,7 @@ public class GalleryItemAdapter extends ArrayAdapter<Movie> {
 
     public GalleryItemAdapter(Context context, List<Movie> movies) {
         super(context, 0, movies);
-        mContext= context;
+        mContext = context;
         mMovieList = movies;
     }
 

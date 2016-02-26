@@ -1,12 +1,13 @@
-# Android M Permissions and Forward Compatibility for Legacy Apps
+# Popular Movies App, Stage 1
 
-An example app to demo the new runtime permission model introduced in Android M 
+Stage 1 of Popular Movies app An example app to demo the new runtime permission model introduced in Android M 
 
-### Introduction
+### User Experience
 
-MyContacts app will query the ContactsProvider component to retrieve all stored contacts. It needs READ_CONTACTS Permission. Although this app is designed for pre M devices, but we will install it on an Android M virtual device. On Android M, you can turn off app permissions from the settings screen (see screenshot 3). This will not cause our app to crash or throw SecurityException. You will notice how Android M will return an empty data set with no contacts (see screenshot 4). You can read more about it on the
-[Android Advocate
-blog](http://android-advocate.blogspot.com/2015/06/android-m-permissions-and-forward.html).
+1. Upon launch, present movies in a Grid view (screenshot 1)
+2. Allow user to change sort criteria through Settings (screenshot 2)
+3. Allow user to navigate to a details screen (screenshot 3)
+4. Allow user to share a movie with another app (screenshot 4)
 
 ### Screenshots
 
@@ -15,23 +16,24 @@ blog](http://android-advocate.blogspot.com/2015/06/android-m-permissions-and-for
 <img src="screenshots/Screenshot3.png" width="40%" />
 <img src="screenshots/Screenshot4.png" width="40%" />
 
-### Getting Started
+### Change API Key
 
-Clone this repository, enter the top level directory and run <code>./gradlew tasks</code> to get an overview of all the tasks available for this project.
-
-Some important tasks are:
 
 ```
-assembleDebug - Assembles all Debug builds.
-installDebug - Installs the Debug build.
+ public static final String MOVIE_DB_API_KEY = "YOUR_API_KEY";
+
 ```
 
-### Download Android M Developer Preview
-To test revoking app permissions at runtime, you will need Android M Developer preview SDK Manager. You can download the M preview SDK from the following link
-http://developer.android.com/preview/index.html      
+### Libraries
+
+This project demonstartes the use of following libraries 
+1. Retrofit- HTTP client library used for making network calls
+2. Butterknife- used for view injection
+3. Otto- an event bus
+4. Picasso- an image loading and caching library
 
 ### Support
 
 If you've found an error in this sample, please file an issue:
 
-https://github.com/kunal-jaggi/android-m-permissions-forward/issues
+https://github.com/kunal-jaggi/PopularMoviesStage1/issues

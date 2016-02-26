@@ -16,7 +16,6 @@ import com.udacity.popularmovies.stageone.singleton.PopularMoviesApplication;
  * Created by kunaljaggi on 2/20/16.
  */
 public class SettingsActivity extends PreferenceActivity implements Preference.OnPreferenceChangeListener {
-    //TODO bug: the back arrow button inside Settings is not pointing to the parent
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

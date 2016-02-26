@@ -20,6 +20,7 @@ import retrofit.Response;
 import retrofit.Retrofit;
 
 /**
+ * This class implements API interface to send out network requests to Movie DB REST endpoint.
  * Created by kunaljaggi on 2/18/16.
  */
 public class DiscoverMovieServiceImpl {
