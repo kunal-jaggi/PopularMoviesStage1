@@ -1,6 +1,6 @@
 <resources>
     <!-- Label for the app name in the launcher -->
-    <string name="app_name">Popular Movies</string>
+    <string name="app_name">MoviePal</string>
 
     <!-- Labels for actions on the "Action bar" -->
     <string name="action_settings">Settings</string>

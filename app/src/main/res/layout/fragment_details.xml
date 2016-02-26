@@ -1,11 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".view.DetailsFragment">
 
     <LinearLayout
@@ -25,6 +24,7 @@
 
     <ImageView
         android:id="@+id/moviePoster"
+        style="@style/MovieItemPadding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/movieTitlePlaceHolder"
@@ -32,26 +32,29 @@
 
     <TextView
         android:id="@+id/movieReleaseYear"
+        style="@style/MovieItemPadding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/moviePoster"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:textAppearance="?android:attr/textAppearanceMedium"/>
     />
 
     <TextView
         android:id="@+id/movieRating"
+        style="@style/MovieItemPadding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/moviePoster"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="175dp"
+        android:layout_marginTop="150dp"
         android:textAppearance="?android:attr/textAppearanceSmall"/>
     />
 
     <TextView
         android:id="@+id/movieOverview"
+        style="@style/MovieItemPadding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/moviePoster"
@@ -60,3 +63,4 @@
         android:textAppearance="?android:attr/textAppearanceMedium"/>
     />
 </RelativeLayout>
+</ScrollView>

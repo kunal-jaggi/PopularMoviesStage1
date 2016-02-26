@@ -91,7 +91,7 @@ public class DetailsFragment extends Fragment {
     private void fillDetailScreen(final Movie selectedMovie) {
         mMovieTileTxt.setText(selectedMovie.getmTitle());
         Picasso.with(getContext())
-                .load(Constants.MOVIE_DB_POSTAR_URL + selectedMovie.getmPosterPath())
+                .load(Constants.MOVIE_DB_POSTER_URL + Constants.POSTER_PHONE_SIZE + selectedMovie.getmPosterPath())
                 .into(mMoviePoster);
         mMovieRating.setText("" + selectedMovie.getmVoteAverage() + "/10");
         mMovieOverview.setText(selectedMovie.getmOverview());
