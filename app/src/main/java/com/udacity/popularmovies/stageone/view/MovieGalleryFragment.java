@@ -50,9 +50,7 @@ public class MovieGalleryFragment extends Fragment {
         setRetainInstance(true);
         setHasOptionsMenu(true); // fragment should handle menu events
     }
-
-    //TODO in chapter 3 data from BO is retrieved inside onStart callback
-
+    
     /**
      * This callback makes the fragment visible to the user when the containing activity is started.
      * We want to make a network request before user can  begin interacting with the user (onResume callback)
