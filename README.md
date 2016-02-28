@@ -1,6 +1,6 @@
 # Popular Movies App, Stage 1
 
-Stage 1 of Popular Movies app required to complete Udacity’s Android Developer Nanodegree. This is an MVP that provides core experience of a movie search app. 
+Stage 1 of Popular Movies app required to complete Udacity Android Developer Nanodegree. This is an MVP that provides core experience of a movie search app. 
 
 ### User Experience
 
@@ -17,6 +17,7 @@ Stage 1 of Popular Movies app required to complete Udacity’s Android Developer
 <img src="screenshots/Screenshot4.png" width="40%" />
 
 ### Change API Key
+
 In order to run the app, you must create your own Movie DB API key. See [here](https://www.themoviedb.org/documentation/api?language=en) for more info. Once you have crated an API key, insert the same in com.udacity.popularmovies.stageone.util.Constants.java file.   
  
 
@@ -31,12 +32,12 @@ In order to run the app, you must create your own Movie DB API key. See [here](h
 This project demonstartes the use of following libraries:
 
 1. [Retrofit](http://square.github.io/retrofit/)- HTTP client library used for making network calls
-2. Butterknife- used for view injection
-3. Otto- an event bus
-4. Picasso- an image loading and caching library
+2. [Butterknife](http://jakewharton.github.io/butterknife/)- used for view injection
+3. [Otto](http://square.github.io/otto/)- an event bus
+4. [Picasso](http://square.github.io/picasso/)- an image loading and caching library
 
 ### Support
 
-If you've found an error in this sample, please file an issue:
+If you've found an error in this project, please file an issue:
 
 https://github.com/kunal-jaggi/PopularMoviesStage1/issues
