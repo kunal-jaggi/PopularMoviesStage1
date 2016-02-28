@@ -15,7 +15,7 @@ public class PopularMoviesApplication extends Application {
 
     public static Bus getEventBus() {
 
-        if(mEventBus == null) {
+        if (mEventBus == null) {
             mEventBus = new com.squareup.otto.Bus();
         }
 

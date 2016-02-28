@@ -52,18 +52,23 @@ public class MovieGalleryFragment extends Fragment {
     }
 
     //TODO in chapter 3 data from BO is retrieved inside onStart callback
+
+    /**
+     * This callback makes the fragment visible to the user when the containing activity is started.
+     * We want to make a network request before user can  begin interacting with the user (onResume callback)
+     */
+    @Override
+    public void onStart() {
+        super.onStart();
+        mMovieService = new DiscoverMovieServiceImpl();
+        PopularMoviesApplication.getEventBus().register(this);
+        fetchMovies();
+    }
+
     @Override
     public void onPause() {
         super.onPause();
         PopularMoviesApplication.getEventBus().unregister(this);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mMovieService = new DiscoverMovieServiceImpl();
-        PopularMoviesApplication.getEventBus().register(this);
-        fetchMovies();
     }
 
     /**

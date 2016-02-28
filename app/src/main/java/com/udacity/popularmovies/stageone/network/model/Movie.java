@@ -4,6 +4,7 @@ package com.udacity.popularmovies.stageone.network.model;
  * A POJO that represents Movie object.
  * Created by kunaljaggi on 2/17/16.
  */
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -14,20 +15,34 @@ import java.util.List;
 
 
 public class Movie implements Parcelable {
-    @SerializedName("id") private int mId;
-    @SerializedName("adult") private boolean mAdult;
-    @SerializedName("overview") private String mOverview;
-    @SerializedName("title") private String mTitle;
-    @SerializedName("popularity") private float mPopularity;
-    @SerializedName("video") private boolean mVideo;
-    @SerializedName("poster_path") private String mPosterPath;
-    @SerializedName("release_date") private String mReleaseDate;
-    @SerializedName("genre_ids") private List<Integer> mGenreIds = new ArrayList<Integer>();
-    @SerializedName("original_title") private String mOriginalTitle;
-    @SerializedName("original_language") private String mOriginalLanguage;
-    @SerializedName("backdrop_path") private String mBackdropPath;
-    @SerializedName("vote_count") private int mVoteCount;
-    @SerializedName("vote_average") private float mVoteAverage;
+    @SerializedName("id")
+    private int mId;
+    @SerializedName("adult")
+    private boolean mAdult;
+    @SerializedName("overview")
+    private String mOverview;
+    @SerializedName("title")
+    private String mTitle;
+    @SerializedName("popularity")
+    private float mPopularity;
+    @SerializedName("video")
+    private boolean mVideo;
+    @SerializedName("poster_path")
+    private String mPosterPath;
+    @SerializedName("release_date")
+    private String mReleaseDate;
+    @SerializedName("genre_ids")
+    private List<Integer> mGenreIds = new ArrayList<Integer>();
+    @SerializedName("original_title")
+    private String mOriginalTitle;
+    @SerializedName("original_language")
+    private String mOriginalLanguage;
+    @SerializedName("backdrop_path")
+    private String mBackdropPath;
+    @SerializedName("vote_count")
+    private int mVoteCount;
+    @SerializedName("vote_average")
+    private float mVoteAverage;
 
     public int getmId() {
         return mId;
@@ -170,23 +185,24 @@ public class Movie implements Parcelable {
     /**
      * A private constructor that can only be used by the CREATOR field.
      * You have to read the data from the Parcel in the exact same order you wrote it.
+     *
      * @param in used to retrieve the values that we originally wrote into the `Parcel`
      */
     private Movie(Parcel in) {
         mId = in.readInt();
         mAdult = in.readByte() != 0;
         mOverview = in.readString();
-        mTitle= in.readString();
-        mPopularity= in.readFloat();
+        mTitle = in.readString();
+        mPopularity = in.readFloat();
         mVideo = in.readByte() != 0;
-        mPosterPath= in.readString();
-        mReleaseDate= in.readString();
-        in.readList(mGenreIds,null);
-        mOriginalTitle= in.readString();
-        mOriginalLanguage= in.readString();
-        mBackdropPath= in.readString();
-        mVoteCount= in.readInt();
-        mVoteAverage= in.readFloat();
+        mPosterPath = in.readString();
+        mReleaseDate = in.readString();
+        in.readList(mGenreIds, null);
+        mOriginalTitle = in.readString();
+        mOriginalLanguage = in.readString();
+        mBackdropPath = in.readString();
+        mVoteCount = in.readInt();
+        mVoteAverage = in.readFloat();
 
     }
 

@@ -51,6 +51,7 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
     /**
      * Called when a Preference has been changed by the user.
      * We'll use this as a trigger to make a new web service call to retrieve movie list.
+     *
      * @param preference
      * @param value
      * @return

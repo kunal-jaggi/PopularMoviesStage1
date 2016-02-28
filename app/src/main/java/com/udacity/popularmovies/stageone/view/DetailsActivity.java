@@ -10,7 +10,7 @@ import com.udacity.popularmovies.stageone.R;
  */
 public class DetailsActivity extends BaseActivity {
 
-    public static final String EXTRA_MOVIE= "com.udacity.popularmovies.EXTRA_MOVIE";
+    public static final String EXTRA_MOVIE = "com.udacity.popularmovies.EXTRA_MOVIE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
