@@ -17,7 +17,7 @@ Stage 1 of Popular Movies app An example app to demo the new runtime permission 
 <img src="screenshots/Screenshot4.png" width="40%" />
 
 ### Change API Key
-In order to run the app, you must create your own Movie DB API key. See [here](https://www.themoviedb.org/documentation/api?language=en) for more info. Once you have crated an API key, insert the same in com.udacity.popularmovies.stageone.util Constants.java file.   
+In order to run the app, you must create your own Movie DB API key. See [here](https://www.themoviedb.org/documentation/api?language=en){:target="_blank"} for more info. Once you have crated an API key, insert the same in com.udacity.popularmovies.stageone.util.Constants.java file.   
  
 
 
@@ -29,8 +29,8 @@ In order to run the app, you must create your own Movie DB API key. See [here](h
 ### Libraries
 
 This project demonstartes the use of following libraries:
- 
-1. Retrofit- HTTP client library used for making network calls
+
+1. [Retrofit](http://square.github.io/retrofit/){:target="_blank"}- HTTP client library used for making network calls
 2. Butterknife- used for view injection
 3. Otto- an event bus
 4. Picasso- an image loading and caching library
