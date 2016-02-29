@@ -92,6 +92,8 @@ public class DetailsFragment extends Fragment {
         mMovieTileTxt.setText(selectedMovie.getmTitle());
         Picasso.with(getContext())
                 .load(Constants.MOVIE_DB_POSTER_URL + Constants.POSTER_PHONE_SIZE + selectedMovie.getmPosterPath())
+                .placeholder(R.drawable.poster_placeholder) // support download placeholder
+                .error(R.drawable.poster_placeholder_error) //support error placeholder, if back-end returns empty string or null
                 .into(mMoviePoster);
         mMovieRating.setText("" + selectedMovie.getmVoteAverage() + "/10");
         mMovieOverview.setText(selectedMovie.getmOverview());

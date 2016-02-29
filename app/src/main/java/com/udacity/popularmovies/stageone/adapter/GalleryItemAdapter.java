@@ -39,6 +39,8 @@ public class GalleryItemAdapter extends ArrayAdapter<Movie> {
         ImageView imageView = (ImageView) convertView.findViewById(R.id.gallery_item_imageView);
         Picasso.with(mContext)
                 .load(Constants.MOVIE_DB_POSTER_URL + Constants.POSTER_PHONE_SIZE + mMovieList.get(position).getmPosterPath())
+                .placeholder(R.drawable.poster_placeholder) // support download placeholder
+                .error(R.drawable.poster_placeholder_error) //support error placeholder, if back-end returns empty string or null
                 .into(imageView);
         return convertView;
     }
